@@ -3,6 +3,7 @@ package com.example.ktapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.ktapp.R
 import com.example.ktapp.contract.EquipmentContract
 import com.example.ktapp.model.Equipment
@@ -17,13 +18,13 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
         setContentView(R.layout.activity_equipments)
         presenter = EquipmentPresenter(this)
 
-        var department = intent.getStringExtra("description")
-
+        val department = intent.getStringExtra("description")
+        Log.i("Equipment Activity", department)
         presenter?.getEquipmentsByDepartments(department)
 
     }
 
     override fun showEquipments(equipments: List<Equipment>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i("EquipmentsResponse", equipments.toString())
     }
 }

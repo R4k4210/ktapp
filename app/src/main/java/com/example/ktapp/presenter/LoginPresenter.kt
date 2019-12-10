@@ -65,7 +65,7 @@ class LoginPresenter (view: LoginContract.View): LoginContract.Presenter{
 
         val service = retrofit.create<LoginContract.ApiService>(LoginContract.ApiService::class.java)
 
-        service.validateUserAndGetDepartments(email, password).enqueue(object : Callback<List<Department>> {
+        service.validateUserAndGetDepartments().enqueue(object : Callback<List<Department>> {
             override fun onResponse(call: Call<List<Department>>, response: Response<List<Department>>) {
                 if(response.isSuccessful){
                     val departments = response.body()

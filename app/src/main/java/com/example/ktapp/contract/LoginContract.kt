@@ -3,6 +3,7 @@ package com.example.ktapp.contract
 import com.example.ktapp.model.Department
 import retrofit2.Call
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface LoginContract {
@@ -29,8 +30,9 @@ interface LoginContract {
     }
 
     interface ApiService{
+        //@FormUrlEncoded
         @POST("user/")
-        fun validateUserAndGetDepartments(@Field("email") email: String, @Field("password") password: String): Call<List<Department>>
+        fun validateUserAndGetDepartments(/*@Field("email") email: String, @Field("password") password: String*/): Call<List<Department>>
 
     }
 
