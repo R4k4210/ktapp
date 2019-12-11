@@ -29,7 +29,6 @@ class EquipmentPresenter(view: EquipmentContract.View): EquipmentContract.Presen
                 Log.i("OnResponse", response.isSuccessful.toString())
                 if(response.isSuccessful){
                     var equipments  = response.body()
-                    Log.i("Equipments", equipments.toString())
                     if(equipments != null){
                         eqView.showEquipments(equipments)
                     }

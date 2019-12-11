@@ -28,10 +28,10 @@ class DepartmentsActivity : AppCompatActivity(), DepartmentRecyclerAdapter.OnCar
     }
 
     private fun initReclyclerView(){
-       recycler_view.apply {
-           recycler_view.layoutManager = LinearLayoutManager(this@DepartmentsActivity)
-           departmentAdapter = DepartmentRecyclerAdapter()
-           recycler_view.adapter = departmentAdapter
+        deparetment_recycler_view.apply {
+            deparetment_recycler_view.layoutManager = LinearLayoutManager(this@DepartmentsActivity)
+            departmentAdapter = DepartmentRecyclerAdapter()
+            deparetment_recycler_view.adapter = departmentAdapter
        }
 
     }

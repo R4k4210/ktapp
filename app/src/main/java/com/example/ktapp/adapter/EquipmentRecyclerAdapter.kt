@@ -1,17 +1,20 @@
 package com.example.ktapp.adapter
 
-import android.content.Intent
-import android.util.Log
+import android.graphics.Bitmap
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ktapp.R
-import com.example.ktapp.model.Department
 import com.example.ktapp.model.Equipment
-import com.example.ktapp.view.EquipmentsActivity
-import kotlinx.android.synthetic.main.department_card.view.*
+import kotlinx.android.synthetic.main.equipment_card.view.*
+import net.glxn.qrgen.android.QRCode
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class EquipmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -36,7 +39,18 @@ class EquipmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     class EquipmentViewHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView){
-        val description: TextView = itemView.view_description
+        val qrImage: ImageView = itemView.qr_image
+        val name: TextView = itemView.e_name
+        val identify: TextView = itemView.e_id
+        val serial: TextView = itemView.e_serial
+        val serialInt: TextView = itemView.e_inventory
+        val brand: TextView = itemView.e_brand
+        val model: TextView = itemView.e_model
+        val admission: TextView = itemView.e_admission
+        val egress: TextView = itemView.e_egress
+        val quantity: TextView = itemView.e_quantity
+        val type: TextView = itemView.e_type
+        val state: TextView = itemView.e_state
 
         init{
             itemView.setOnClickListener {
@@ -51,13 +65,40 @@ class EquipmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
         }
 
         fun bind(equipment: Equipment){
-            //Bind Equipment to view
-            //description.text = department.description
+            //Generate QrCode Img
+            val imgBitmap: Bitmap = QRCode.from(equipment.getQrString()).bitmap()
+            qrImage.setImageBitmap(imgBitmap)
+            //Bind data
+            name.text = equipment.name
+            identify.text = equipment.identify
+            serial.text = equipment.serial
+            serialInt.text = equipment.serialInt
+            brand.text = equipment.brand
+            model.text = equipment.model
+            admission.text = formatDate(equipment.admission)
+            egress.text = formatDate(equipment.egress)
+            quantity.text = equipment.quantity.toString()
+            type.text = equipment.typeEquipment
+            state.text = equipment.state
+        }
+
+        fun formatDate(date: Date): String{
+            val pattern = "yyyy/MM/dd"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            var dateStr: String = ""
+            if(date != null || !TextUtils.isEmpty(date)){
+                dateStr = simpleDateFormat.format(date)
+            }else{
+                dateStr = "----/--/--"
+            }
+
+            return dateStr
         }
     }
 
     fun submitList(equipment: List<Equipment>){
         items = equipment
     }
+
 
 }
