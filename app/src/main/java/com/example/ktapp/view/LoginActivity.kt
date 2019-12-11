@@ -46,11 +46,13 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun emptyEmail() {
-        password.error = "Email cannot be blank"
+        email.error = "Email cannot be blank"
+        email.requestFocus()
     }
 
     override fun emptyPassword() {
         password.error = "Password cannot be blank"
+        password.requestFocus()
     }
 
     override fun error() {

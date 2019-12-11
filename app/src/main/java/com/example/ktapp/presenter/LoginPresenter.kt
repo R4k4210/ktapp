@@ -21,12 +21,11 @@ class LoginPresenter (view: LoginContract.View): LoginContract.Presenter{
 
         if(TextUtils.isEmpty(email)){
             changeStatus(LoginStatus.EMPTY_EMAIL())
-        }
-        if(TextUtils.isEmpty(password)){
+        }else if(TextUtils.isEmpty(password)){
             changeStatus(LoginStatus.EMPTY_PASS())
+        }else{
+            loginAndGetDepartments(email, password)
         }
-        loginAndGetDepartments(email, password)
-
     }
 
     override fun onDestroy() {

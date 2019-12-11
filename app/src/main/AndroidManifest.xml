@@ -13,22 +13,26 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.EquipmentsActivity"
+            tools:ignore="GoogleAppIndexingWarning"
+            android:usesCleartextTraffic="true">
+        <activity android:name=".view.ScanQrActivity"
+                ></activity>
+        <activity
+                android:name=".view.EquipmentsActivity"
                 android:label="Lista de Equipos"
                 android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".view.DepartmentsActivity"/>
-        </activity>
-        <activity android:name=".view.DepartmentsActivity"
-                android:label="Lista de Departamentos"
-                android:launchMode="singleTop">
-
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".view.DepartmentsActivity" />
         </activity>
         <activity
+                android:name=".view.DepartmentsActivity"
+                android:label="Lista de Departamentos"
+                android:launchMode="singleTop"></activity>
+        <activity
                 android:name=".view.LoginActivity"
-                android:windowSoftInputMode="adjustResize"
-                android:label="Login">
+                android:label="Login"
+                android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

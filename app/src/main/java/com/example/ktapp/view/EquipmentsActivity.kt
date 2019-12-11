@@ -1,8 +1,11 @@
 package com.example.ktapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ktapp.R
@@ -16,6 +19,7 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
 
     private var presenter: EquipmentPresenter? = null
     private lateinit var equipmentAdapter: EquipmentRecyclerAdapter
+    private lateinit var btnScan: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,13 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
         val department = intent.getStringExtra("description")
 
         presenter?.getEquipmentsByDepartments(department)
+
+        btnScan = findViewById(R.id.btn_Scan)
+        btnScan.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@EquipmentsActivity, ScanQrActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        })
 
     }
 
