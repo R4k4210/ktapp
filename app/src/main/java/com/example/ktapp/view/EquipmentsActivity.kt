@@ -29,9 +29,9 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
         presenter = EquipmentPresenter(this)
         equipmentAdapter = EquipmentRecyclerAdapter()
 
-        val department = intent.getStringExtra("description")
+        val receivedId = intent.getStringExtra("depId")
 
-        presenter?.getEquipmentsByDepartments(department)
+        presenter?.getEquipmentsByDepartments(receivedId.toInt())
 
         btnScan = findViewById(R.id.btn_Scan)
         btnScan.setOnClickListener(View.OnClickListener {
@@ -43,6 +43,7 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
         btnAddEq = findViewById(R.id.btn_addEq)
         btnAddEq.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@EquipmentsActivity, AddEquipmentActivity::class.java)
+            intent.putExtra("departmenId", receivedId)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         })

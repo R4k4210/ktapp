@@ -1,8 +1,10 @@
 package com.example.ktapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ktapp.R
@@ -29,6 +31,11 @@ class DepartmentsActivity : AppCompatActivity(), DepartmentRecyclerAdapter.OnCar
         departmentAdapter.submitList(departments!!)
 
         btnScan = findViewById(R.id.d_btn_Scan)
+        btnScan.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@DepartmentsActivity, ScanQrActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        })
 
     }
 

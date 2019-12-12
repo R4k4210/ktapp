@@ -11,7 +11,7 @@ interface EquipmentContract {
     }
 
     interface Presenter{
-        fun getEquipmentsByDepartments(department: String)
+        fun getEquipmentsByDepartments(departmentId: Int)
     }
 
     interface Model{
@@ -19,8 +19,8 @@ interface EquipmentContract {
     }
 
     interface ApiService{
-        @GET("equipment/{department}/")
-        fun getEquipmentsByDepartment(@Path("department") department: String): Call<List<Equipment>>
+        @GET("equipment/{departmentId}/")
+        fun getEquipmentsByDepartment(@Path("departmentId") depId: Int): Call<List<Equipment>>
     }
 
 }

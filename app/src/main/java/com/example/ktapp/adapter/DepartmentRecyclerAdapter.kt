@@ -11,6 +11,7 @@ import com.example.ktapp.R
 import com.example.ktapp.model.Department
 import com.example.ktapp.view.EquipmentsActivity
 import kotlinx.android.synthetic.main.department_card.view.*
+import org.w3c.dom.Text
 
 
 class DepartmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -36,17 +37,19 @@ class DepartmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
     class DepartmentViewHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView){
         val description: TextView = itemView.view_description
+        val id: TextView = itemView.id_department
 
         init{
             itemView.setOnClickListener {
-                val description = this.itemView.view_description.text.toString()
+                val departmentId = this.itemView.id_department.text.toString()
                 val intent = Intent(itemView.context, EquipmentsActivity::class.java)
-                intent.putExtra("description", description)
+                intent.putExtra("depId", departmentId)
                 itemView.context.startActivity(intent)
             }
         }
 
         fun bind(department: Department){
+            id.text = department.id.toString()
             description.text = department.description
         }
     }

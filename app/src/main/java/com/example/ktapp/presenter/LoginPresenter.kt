@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.ktapp.contract.LoginContract
 import com.example.ktapp.model.Department
 import com.example.ktapp.model.LoginRequest
+import com.example.ktapp.utils.BasePath
 import com.example.ktapp.utils.LoginStatus
 import com.example.ktapp.utils.RetrofitApiService
 import com.google.gson.Gson
@@ -59,7 +60,7 @@ class LoginPresenter (view: LoginContract.View): LoginContract.Presenter{
     private fun loginAndGetDepartments(email: String, password: String) {
 
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.103:8080/")
+            .baseUrl(BasePath.BASE_PATH())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

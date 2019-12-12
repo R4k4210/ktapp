@@ -3,6 +3,7 @@ package com.example.ktapp.presenter
 import android.util.Log
 import com.example.ktapp.contract.EquipmentContract
 import com.example.ktapp.model.Equipment
+import com.example.ktapp.utils.BasePath
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,14 +15,16 @@ class EquipmentPresenter(view: EquipmentContract.View): EquipmentContract.Presen
 
     private val eqView: EquipmentContract.View = view
 
-    override fun getEquipmentsByDepartments(department: String) {
+    override fun getEquipmentsByDepartments(departmentId: Int) {
 
         val gson = GsonBuilder().setDateFormat("yyyy/MM/dd").create()
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.103:8080/")
+            .baseUrl(BasePath.BASE_PATH())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-        var dep = "1"; //Esto es un hardcode para el mock
+
+        var dep = 1; //Esto es un hardcode para el mock, se debe pasar "departmentId"
+
         val service = retrofit.create<EquipmentContract.ApiService>(EquipmentContract.ApiService::class.java)
         service.getEquipmentsByDepartment(dep).enqueue(object: Callback<List<Equipment>> {
 
