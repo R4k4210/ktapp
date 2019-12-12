@@ -10,7 +10,6 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 class ScanQrActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_qr)
@@ -26,7 +25,9 @@ class ScanQrActivity : AppCompatActivity() {
                 finish()
             } else {
                 //Send to AddEquipmentActivity
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                val intent = Intent(this@ScanQrActivity, AddEquipmentActivity::class.java)
+                intent.putExtra("newQrString", result.contents)
+                startActivity(intent)
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

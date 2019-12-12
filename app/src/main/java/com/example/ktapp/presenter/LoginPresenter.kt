@@ -4,6 +4,7 @@ import android.text.TextUtils
 import android.util.Log
 import com.example.ktapp.contract.LoginContract
 import com.example.ktapp.model.Department
+import com.example.ktapp.model.LoginRequest
 import com.example.ktapp.utils.LoginStatus
 import com.example.ktapp.utils.RetrofitApiService
 import com.google.gson.Gson
@@ -62,9 +63,11 @@ class LoginPresenter (view: LoginContract.View): LoginContract.Presenter{
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+        var request = LoginRequest(email, password)
+
         val service = retrofit.create<LoginContract.ApiService>(LoginContract.ApiService::class.java)
 
-        service.validateUserAndGetDepartments().enqueue(object : Callback<List<Department>> {
+        service.validateUserAndGetDepartments(request).enqueue(object : Callback<List<Department>> {
             override fun onResponse(call: Call<List<Department>>, response: Response<List<Department>>) {
                 if(response.isSuccessful){
                     val departments = response.body()

@@ -20,6 +20,7 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
     private var presenter: EquipmentPresenter? = null
     private lateinit var equipmentAdapter: EquipmentRecyclerAdapter
     private lateinit var btnScan: Button
+    private lateinit var btnAddEq: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,12 @@ class EquipmentsActivity : AppCompatActivity(), EquipmentContract.View {
             startActivity(intent)
         })
 
+        btnAddEq = findViewById(R.id.btn_addEq)
+        btnAddEq.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@EquipmentsActivity, AddEquipmentActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        })
     }
 
     override fun showEquipments(equipments: List<Equipment>) {

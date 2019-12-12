@@ -3,6 +3,7 @@ package com.example.ktapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ktapp.R
 import com.example.ktapp.adapter.DepartmentRecyclerAdapter
@@ -13,6 +14,7 @@ class DepartmentsActivity : AppCompatActivity(), DepartmentRecyclerAdapter.OnCar
 
     private lateinit var departmentAdapter: DepartmentRecyclerAdapter
     private var items: List<Department> = ArrayList()
+    private lateinit var btnScan: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,9 @@ class DepartmentsActivity : AppCompatActivity(), DepartmentRecyclerAdapter.OnCar
         Log.i("DepartmentActivity", departments.toString())
         initReclyclerView()
         departmentAdapter.submitList(departments!!)
+
+        btnScan = findViewById(R.id.d_btn_Scan)
+
     }
 
     private fun initReclyclerView(){

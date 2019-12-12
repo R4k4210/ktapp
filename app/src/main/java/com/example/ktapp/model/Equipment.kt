@@ -18,6 +18,8 @@ data class Equipment(
 
 ): Serializable{
 
+    constructor(): this("", "", "", "", "", "", Date(), Date(), 0, "", "")
+
     fun getQrString(): String{
         return name + "-" +
                identify + "-" +

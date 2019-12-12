@@ -15,15 +15,15 @@ class EquipmentPresenter(view: EquipmentContract.View): EquipmentContract.Presen
     private val eqView: EquipmentContract.View = view
 
     override fun getEquipmentsByDepartments(department: String) {
-        Log.i("Equipment Activity", "Entro al presenter del eq")
+
         val gson = GsonBuilder().setDateFormat("yyyy/MM/dd").create()
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.0.103:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-
+        var dep = "1"; //Esto es un hardcode para el mock
         val service = retrofit.create<EquipmentContract.ApiService>(EquipmentContract.ApiService::class.java)
-        service.getEquipmentsByDepartment().enqueue(object: Callback<List<Equipment>> {
+        service.getEquipmentsByDepartment(dep).enqueue(object: Callback<List<Equipment>> {
 
             override fun onResponse(call: Call<List<Equipment>>, response: Response<List<Equipment>>) {
                 Log.i("OnResponse", response.isSuccessful.toString())
@@ -34,10 +34,8 @@ class EquipmentPresenter(view: EquipmentContract.View): EquipmentContract.Presen
                     }
                 }else if(response.code() == 401){
 
-                    //Mostrar error en la respuesta
+                    //Error en la llamada
                 }
-
-
             }
 
             override fun onFailure(call: Call<List<Equipment>>, t: Throwable) {

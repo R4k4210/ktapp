@@ -53,18 +53,6 @@ class EquipmentRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
         val type: TextView = itemView.e_type
         val state: TextView = itemView.e_state
 
-        init{
-            itemView.setOnClickListener {
-                //Send to Form Activity
-                /*
-                val description = this.itemView.view_description.text.toString()
-                val intent = Intent(itemView.context, EquipmentsActivity::class.java)
-                intent.putExtra("description", description)
-                itemView.context.startActivity(intent)
-                */
-            }
-        }
-
         fun bind(equipment: Equipment){
             //Generate QrCode Img
             val imgBitmap: Bitmap = QRCode.from(equipment.getQrString()).bitmap()
